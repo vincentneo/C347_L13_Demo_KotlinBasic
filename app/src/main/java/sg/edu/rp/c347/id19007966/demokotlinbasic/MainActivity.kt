@@ -16,12 +16,32 @@ class MainActivity : AppCompatActivity() {
             if (userInput.isNotEmpty()) {
                 val year = Calendar.getInstance().get(Calendar.YEAR)
                 val age = year - userInput.toInt()
-                textViewShowAge.text = "Your age is $age"
+                val formattedText = "Your age is $age"
+                textViewShowAge.text = formattedText
+                textViewAgeDescription.text = describe(age);
             }
             else {
                 Toast.makeText(this, "Please enter your birth year", Toast.LENGTH_SHORT).show()
             }
         }
 
+    }
+
+    fun describe(age: Int): String {
+        if (age < 18) {
+            return "Underage"
+        }
+        else if (age in 18..65) {
+            return "Young people"
+        }
+        else if (age in 66..79) {
+            return "Middle-aged"
+        }
+        else if (age in 80..99) {
+            return "Elderly"
+        }
+        else {
+            return "Long-lived elderly"
+        }
     }
 }
